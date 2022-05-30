@@ -1,0 +1,144 @@
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+header {
+  display: block;
+  background-color: steelblue;
+  color: white;
+  font-size: large;
+  text-align: center;
+  line-height: 48px;
+  height: 48px;
+
+  position: relative;
+  z-index: 101;
+
+  box-shadow:rgb(0 0 0 / 20%) 0px 2px 4px -1px,
+             rgb(0 0 0 / 14%) 0px 4px 5px 0px,
+             rgb(0 0 0 / 12%) 0px 1px 10px 0px
+}
+
+main {
+  background-color: whitesmoke;
+  overflow-y: scroll;
+  height: calc(100% - 48px);
+}
+
+.content-root {
+  display: grid;
+  margin: 1em 0;
+  padding: 0 1em;
+  border: none;
+  column-gap: 1.5em;
+
+  row-gap: 1.2em;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-auto-rows: 12em;
+}
+
+/* feed */
+
+.feed {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: 4px;
+  background: white;
+  box-shadow: rgb(0 0 0 / 20%) 0px 3px 1px -2px,
+              rgb(0 0 0 / 14%) 0px 2px 2px 0px,
+              rgb(0 0 0 / 12%) 0px 1px 5px 0px;
+}
+
+.feed .header {
+  background-color: steelblue;
+  color: white;
+  padding: 0 .4em;
+  height: 31px;
+  line-height: 31px;
+  border-bottom: 1px solid gray;
+}
+
+.feed.noload .header {
+  background-color: darkgray;
+}
+
+.feed.error .header {
+  background-color: red;
+}
+
+.feed .header a,
+.feed .header a:visited {
+    color: white;
+}
+
+/* line-indeterminate */
+
+.line-indeterminate-root {
+  position: relative;
+  display: none;
+  margin: 0;
+  padding: 0;
+  height: 4px;
+  border: none;
+  background: steelblue;
+}
+
+.feed.loading .line-indeterminate-root {
+  display: block;
+}
+
+.line-indeterminate-root .line-indeterminate-bar {
+  position: absolute;
+  display: block;
+  height: 100%;
+  background: lightblue;
+}
+
+.line-indeterminate-root .line-indeterminate-bar.bar1 {
+  animation: 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) 0s infinite normal none running line-indeterminate-bar1;
+  transition: transform 0.2s linear 0s;
+  transform-origin: left center;
+}
+
+.line-indeterminate-root .line-indeterminate-bar.bar2 {
+  animation: 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) 1.15s infinite normal none running line-indeterminate-bar2;
+  transition: transform 0.2s linear 0s;
+  transform-origin: left center;
+}
+
+@keyframes line-indeterminate-bar1 {
+  0% {
+    right: 100%;
+    left: -35%;
+  }
+
+  60% {
+    right: -90%;
+    left: 100%;
+  }
+
+  100% {
+    right: -90%;
+    left: 100%;
+  }
+}
+
+@keyframes line-indeterminate-bar2 {
+  0% {
+    right: 100%;
+    left: -200%;
+  }
+
+  60% {
+    right: -8%;
+    left: 107%;
+  }
+
+  100% {
+    right: -8%;
+    left: 107%;
+  }
+}
