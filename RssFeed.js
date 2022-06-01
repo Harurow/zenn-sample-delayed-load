@@ -48,9 +48,33 @@ class RssFeed {
     return jTag;
   }
 
+  /**
+   * 記事をURLから取得する
+   * 今回はダミーで3秒で読んだことにする
+   */
   load() {
     this.jTag.removeClass('noload');
     this.jTag.addClass('loading');
+
+    /*
+    // 本来はこんな感じで取得
+    $.ajax({
+      type: 'GET',
+      async: true,
+      crossDomain: true,
+      dataType: 'xml',
+      url: this.url,
+      success: (xml, _) => {
+        this.jTag.removeClass('loading');
+        // ここで記事を追加
+      },
+      error: (err) => {
+        this.jTag.removeClass('loading');
+        this.jTag.addClass('error');
+      },
+      timeout: 10_000
+    })
+    //*/
 
     // 本来はajaxでRSSの記事を取得しにいくがCORSで取得できないので
     // 3秒後取得できたことにする

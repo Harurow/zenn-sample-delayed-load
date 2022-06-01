@@ -26,10 +26,10 @@ $(() => {
         // 表示された場合はRSSをロードして監視対象外とする
         const elm = entry.target
         const jElm = $(elm)
-        const topicNo = jElm.attr('data-topic-no')
+        const feedNo = jElm.attr('data-feed-no')
 
         // RssFeedのロードを呼び出す
-        feeds[topicNo].load()
+        feeds[feedNo].load()
 
         // 監視の対象から外す
         observer.unobserve(elm)
@@ -41,15 +41,13 @@ $(() => {
   const jContentRoot = $('.content-root')
 
   // トピック分RSS記事を作成する
-  topics.forEach((topic, topicNo) => {
+  topics.forEach((topic, no) => {
     const url = `https://zenn.dev/topics/${topic}/feed`
     const feed = new RssFeed(topic, url)
   
     const jFeedTag = feed.createTag()
-    jFeedTag.appendTo(jContentRoot)
-
-    // 番号で逆引きできるように属性に配列番号を記録
-    jFeedTag.attr('data-topic-no', topicNo)
+        .attr('data-feed-no', no) // 番号で逆引きできるように属性に配列番号を記録
+        .appendTo(jContentRoot)   // コンテンツルートに追加
 
     // フィードを格納しておく
     feeds.push(feed)
